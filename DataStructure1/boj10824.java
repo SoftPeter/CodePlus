@@ -1,0 +1,18 @@
+package DataStructure1;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+public class boj10824 {
+	public static void main(String[] args) throws IOException {
+		String AB, CD;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		AB = st.nextToken() + st.nextToken();
+		CD = st.nextToken() + st.nextToken();
+		
+		System.out.println(Long.parseLong(AB) + Long.parseLong(CD));
+		
+	}
+}
