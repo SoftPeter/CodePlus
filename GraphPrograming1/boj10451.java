@@ -3,37 +3,32 @@ package GraphPrograming1;
 import java.util.*;
 
 public class boj10451 {
-	public static int[] check = new int[1000000];
-	
-	public static int pow(int x, int p) {
-		int ans = 1;
-		for(int i=0; i<p; i++) {
-			ans = ans * x;
-		}
-		return ans;
+	public static void dfs(int a[], boolean c[], int x) {
+		if(c[x])	return;
+		c[x] = true;
+		dfs(a, c, a[x]);
 	}
 	
-	public static int next(int a, int p) {
-		int ans = 0;
-		while(a > 0){
-			ans += pow(a%10, p);
-			a /= 10;
-		}
-		return ans;
-	}
-	
-	public static int length(int a, int p, int cnt) {
-		if(check[a] != 0) {
-			return check[a] - 1;
-		}
-		check[a] = cnt;
-		int b = next(a, p);
-		return length(b, p, cnt+1);
-	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int a = sc.nextInt();
-		int p = sc.nextInt();
-		System.out.println(length(a, p , 1));
+		int t = sc.nextInt();
+		while(t-- > 0) {
+			int n = sc.nextInt();
+			int a[] = new int[n+1];
+			boolean c[] = new boolean[n+1];
+			for(int i=1; i<=n; i++) {
+				a[i] = sc.nextInt();
+				c[i] = false;
+			}
+			
+			int ans = 0;
+			for(int i=1; i<=n; i++) {
+				if(c[i] == false) {
+					dfs(a, c, i);
+					ans += 1;
+				}
+			}
+			System.out.println(ans);
+		}
 	}
 }
